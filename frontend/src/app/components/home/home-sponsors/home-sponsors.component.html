@@ -1,0 +1,13 @@
+<div class="sponsor-container">
+  <div class="sponsor-text">
+    <h1 class="sponsor-title">Nasi klienci</h1>
+    <h2 class="sponsor-subtitle">
+      Dołącz do grona naszych zadowolonych klientów
+    </h2>
+  </div>
+  <div class="sponsor-logos">
+    <div class="sponsor-logo" *ngFor="let sponsor of sponsors | async">
+      <img [src]="sponsor.logo" alt="{{ sponsor.name }}" class="logo-img" />
+    </div>
+  </div>
+</div>

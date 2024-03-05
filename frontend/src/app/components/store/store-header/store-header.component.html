@@ -1,0 +1,92 @@
+<header class="store-header-container">
+  <div class="logo-container">
+    <h1 class="logo"><span class="i">i</span>Merch</h1>
+  </div>
+  <nav
+    *ngIf="isUserLoggedIn()"
+    class="nav-container"
+    [ngSwitch]="currentUserRole"
+  >
+    <ng-container *ngSwitchCase="'client'">
+      <p class="nav-item">
+        {{ currentUser?.firstname }} {{ currentUser?.lastname }}
+      </p>
+      <ng-icon
+        routerLink="/client/carts"
+        class="header-icon"
+        name="lucideShoppingCart"
+      ></ng-icon>
+      <div class="header-standalone-menu">
+        <ng-icon
+          name="lucideUser"
+          (click)="toggleMenu()"
+          class="header-icon"
+        ></ng-icon>
+        <div
+          [ngClass]="{ 'header-menu': true, open: showMenu }"
+          *ngIf="showMenu"
+          (click)="$event.stopPropagation()"
+        >
+          <button routerLink="/client/dashboard" class="header-menu-item">
+            Panel
+          </button>
+          <button routerLink="/client/orders" class="header-menu-item">
+            Zamówienia
+          </button>
+          <button routerLink="/client/profile" class="header-menu-item">
+            Profil
+          </button>
+          <button routerLink="/support" class="header-menu-item">Pomoc</button>
+          <div class="split-header-menu"></div>
+          <button (click)="logout()" class="header-menu-item">Wyloguj</button>
+        </div>
+      </div>
+      <ng-icon
+        name="lucideLogOut"
+        (click)="logout()"
+        class="header-icon"
+      ></ng-icon>
+    </ng-container>
+    <ng-container *ngSwitchCase="'partner'">
+      <a routerLink="/partner/dashboard" class="nav-item">Panel</a>
+      <a routerLink="/partner/orders" class="nav-item">Zamówienia</a>
+      <a routerLink="/partner/profile" class="nav-item">Profil</a>
+      <p class="nav-item">
+        {{ currentUser?.firstname }} {{ currentUser?.lastname }}
+      </p>
+      <div class="header-standalone-menu">
+        <ng-icon
+          name="lucideUser"
+          (click)="toggleMenu()"
+          class="menu-icon"
+        ></ng-icon>
+        <div
+          class="header-menu-container"
+          [ngClass]="{ 'header-menu': true, open: showMenu }"
+          *ngIf="showMenu"
+          (click)="$event.stopPropagation()"
+        >
+          <button routerLink="/partner/dashboard" class="header-menu-item">
+            Panel
+          </button>
+          <button routerLink="/partner/orders" class="header-menu-item">
+            Zamówienia
+          </button>
+          <button routerLink="/partner/profile" class="header-menu-item">
+            Profil
+          </button>
+          <button routerLink="/support" class="header-menu-item">Pomoc</button>
+          <div class="split-header-menu"></div>
+          <button (click)="logout()" class="header-menu-item">Wyloguj</button>
+        </div>
+      </div>
+    </ng-container>
+  </nav>
+  <nav *ngIf="!isUserLoggedIn()" class="nav-container">
+    <a routerLink="#platforma" class="nav-item">Platforma</a>
+    <a routerLink="#projekty" class="nav-item">Projekty</a>
+    <a routerLink="#zespol" class="nav-item">Zespół</a>
+    <a routerLink="#onas" class="nav-item">O nas</a>
+    <button routerLink="/auth" class="register-btn">Start</button>
+  </nav>
+</header>

@@ -1,0 +1,20 @@
+<!-- home-benefits.component.html -->
+
+<div class="benefits-container">
+
+  <div class="title-section">
+    <h1 class="title">{{ title }}</h1>
+    <h2 class="subtitle">{{ subtitle }}</h2>
+  </div>
+
+  <div class="benefits-section">
+    <div *ngFor="let benefit of benefits" class="benefit-card">
+      <div class="benefit-icon-circle">
+        <img class="benefit-icon" [src]="benefit.image" alt="">
+      </div>
+      <h2 class="benefit-title">{{ benefit.title }}</h2>
+      <p class="benefit-desc">{{ benefit.desc }}</p>
+    </div>
+  </div>
+
+</div>

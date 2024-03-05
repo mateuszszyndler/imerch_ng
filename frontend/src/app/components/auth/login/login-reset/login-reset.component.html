@@ -1,0 +1,6 @@
+<form [formGroup]="resetForm" (ngSubmit)="resetPassword()" novalidate>
+  <input type="email" placeholder="Email" formControlName="email" />
+  <button type="submit">Reset Password</button>
+</form>
+
+<a routerLink="/auth/login">Back to Login</a>

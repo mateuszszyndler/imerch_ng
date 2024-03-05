@@ -1,0 +1,16 @@
+<div class="home-hero-container">
+  <div class="content-container">
+      <h2 class="small-title">{{ smallTitle$ | async }}</h2>
+      <h2 class="large-title">
+        Kreatywność w Twoich rękach - <span class="print-on-demand">Print on Demand</span> dla Twojego indywidualnego stylu!
+      </h2>
+      <p class="subtitle">{{ subtitle$ | async }}</p>
+      <div class="cta-container">
+          <button class="cta-btn learn-more-btn">{{ buttonText1$ | async }}</button>
+          <button class="cta-btn start-btn">{{ buttonText2$ | async }}</button>
+      </div>
+  </div>
+  <div class="image-container">
+      <img src="../../../../assets/images/landing/printer.svg" alt="Artistic merchandise">
+  </div>
+</div>

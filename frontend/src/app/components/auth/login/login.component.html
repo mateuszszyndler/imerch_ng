@@ -1,0 +1,37 @@
+<div class="login-container">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    novalidate
+    [@fadeSlideInOut]
+    class="login-form"
+  >
+    <input
+      type="email"
+      placeholder="Email"
+      formControlName="username"
+      class="login-email"
+    />
+    <input
+      type="password"
+      placeholder="Hasło"
+      formControlName="password"
+      class="login-password"
+    />
+    <button type="submit" class="login-button">Logowanie</button>
+  </form>
+
+  <div class="social-login">
+    <asl-google-signin-button
+      (click)="socialLogin('google')"
+      class="login-google"
+      >Login with Google</asl-google-signin-button
+    >
+    <button (click)="socialLogin('facebook')" class="login-facebook">
+      Login with Facebook
+    </button>
+    <button (click)="socialLogin('apple')" class="login-apple">
+      Login with Apple
+    </button>
+  </div>
+</div>

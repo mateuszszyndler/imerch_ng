@@ -1,0 +1,159 @@
+@import "../../../../styles.scss";
+
+.home-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  padding: 1vh 9vw;
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+  @include cwidth(100);
+  @include cheight(10);
+  font-weight: 500;
+}
+
+.home-header-container.scrolled {
+  background-color: lighten($gray-dark, 60%);
+  border-bottom: 1px solid lighten($tertiary, 30%);
+}
+
+.logo-container .logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: lighten($black, 15%);
+  @include font-archivo(500);
+  @include font-size(6);
+}
+
+.nav-container {
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-item,
+.register-btn {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  @include font-archivo(500);
+  @include font-size(5);
+}
+
+.nav-item:hover {
+  color: lighten($tertiary, 5%);
+}
+
+.nav-item {
+  margin-right: 2rem;
+  cursor: pointer;
+  color: lighten($back-dark, 15%);
+  @include font-archivo(500);
+  @include font-size(3.5);
+}
+
+.register-btn {
+  background-color: $primary;
+  border: 1px solid $primary;
+  color: $back-light;
+  @include width(8);
+  @include height(4);
+  border-radius: 2px;
+  @include font-archivo(500);
+  @include font-size(3);
+  padding: 0.5em 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease-out;
+}
+
+.register-btn:hover {
+  color: $white;
+  background: lighten($primary, 10%);
+}
+
+.header-standalone-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.header-icon {
+  cursor: pointer;
+  @include font-size(6);
+  @include width(2);
+  @include height(4);
+  margin-left: .5vw;
+  padding: .5vh;
+  color: lighten($black, 15%);
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: lighten($tertiary, 2%);
+  }
+
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 1vh;
+  @include width(9);
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: lighten($back-light, 15%);
+  border: 1px solid lighten($black, 75%);
+  border-radius: 5px;
+
+}
+
+.open {
+  display: block;
+}
+
+.header-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  user-select: none;
+  padding: 1vh;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  text-align: center;
+  @include width(8);
+  background-color: transparent;
+  color: lighten($black, 15%);
+  @include font-archivo(500);
+  @include font-size(3.5);
+}
+
+.split-header-menu {
+  margin: .5vh;
+  @include height(.1);
+  background-color: lighten($black, 65%);
+}
+
+.header-menu-item:hover {
+  background-color: lighten($primary, 50%);
+  color: $primary;
+}
+
+.header-menu-item:active {
+  background-color: $primary;
+}

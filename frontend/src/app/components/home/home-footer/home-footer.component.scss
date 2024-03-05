@@ -1,0 +1,247 @@
+@import "../../../../styles.scss";
+
+// Global styles for the footer
+.footer-container {
+  background: linear-gradient(180deg, $white 50%, lighten($primary, 50%) 50%);
+  display: flex;
+  bottom: 0;
+  position: sticky;
+  flex-direction: column;
+  justify-content: center;
+  @include cwidth(100);
+  @include cheight(90);
+}
+
+// Styles for the Call to Action section
+.cta-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @include cheight(40);
+  margin: 0 8vw;
+  padding: 0;
+}
+
+.cta-left,
+.cta-right {
+  display: flex;
+  flex-direction: column;
+  @include cwidth(50);
+  @include cheight(40);
+  max-height: 50vh;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+  @media(max-width: $breakpoint-medium) {
+    width: 100%;
+  }
+}
+
+.cta-title {
+@include font-archivo(500);
+@include font-size(5);
+color: lighten($black, 5%);
+text-align: left;
+}
+
+.cta-btn,
+.submit-btn {
+  @include button(lighten($secondary, 23%), 1px solid lighten($secondary, 10%), $primary);
+  @include width(15);
+  @include height(5);
+  border-radius: 2px;
+  margin-bottom: 1vh;
+  @include font-size(4);
+  padding: 0.5em 1em;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease-out;
+
+  /* Button hover animation */
+  &:hover {
+    color: $white;
+    transform: scale(1);
+    background: lighten($primary, 10%);
+  }
+
+  &:hover::before {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid lighten($black, 70%);
+  border-radius: 3px;
+  margin: 0;
+}
+
+form input,
+form textarea {
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+  margin: 1vh;
+  padding: .5vw;
+  @include height(4);
+  @include width(25);
+  border: 1px solid lighten($black, 60%);
+  border-radius: 3px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  @include width(26);
+  padding: 0;
+}
+
+.form-row input {
+  width: 50%;
+}
+
+// Styles for the footer section
+.footer-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @include cwidth(85);
+  @include cheight(40);
+  margin: 5vh 9vw;
+  padding: 0;
+  @media(max-width: $breakpoint-medium) {
+    flex-direction: column;
+  }
+}
+
+.footer-left {
+  @include width(20);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  @media(max-width: $breakpoint-medium) {
+    width: 100%;
+  }
+}
+
+h1 {
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+}
+
+.newsletter-title {
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 0;
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+  @include width(25);
+  border: 0;
+
+}
+
+.newsletter-form input {
+  margin: 0;
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+  @include width(20);
+}
+
+.newsletter-btn {
+  background-color: $primary;
+  color: $white;
+  padding: $spacing-small $spacing-base;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  @media(max-width: $breakpoint-medium) {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+.footer-column {
+  @include width(10);
+  display: flex;
+  flex-direction: column;
+  @media(max-width: $breakpoint-medium) {
+    width: 50%;
+  }
+}
+
+.column-title {
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  margin: 0;
+  padding: 0;
+
+}
+
+ul li a {
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+  text-decoration: none;
+  &:hover {
+    color: $white;
+  }
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #666666;
+}
+
+// Styles for the footer bottom
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 9vw;
+  padding: $spacing-base 0;
+}
+
+.copyright {
+  @include font-archivo(300);
+  @include font-size(4);
+  color: lighten($black, 5%);
+}
+
+.social-icons {
+  display: flex;
+  gap: 1vw;
+}
+

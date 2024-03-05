@@ -1,0 +1,57 @@
+@import "../../../../styles.scss";
+
+.sponsor-container {
+  @include flex(row, space-evenly, center);
+  @include cwidth(100);
+  @include height(20);
+  padding: 10vh 10vw;
+  margin: 0;
+
+  .sponsor-text {
+    @include flex(column, flex-start, flex-start);
+
+    .sponsor-title {
+      @include font-archivo(700);
+      @include font-size(10);
+      color: lighten($black, 5%);
+      padding: 0;
+      margin: 0;
+      cursor: default
+    }
+
+    .sponsor-subtitle {
+      @include font-archivo(500);
+      @include font-size(4.5);
+      @include width(15);
+      color: lighten($black, 15%);
+      cursor: default;
+    }
+  }
+
+  .sponsor-logos {
+    @include flex(row, center, center);
+    @include width(70);
+
+    .sponsor-logo {
+      @include flex(column, center, center);
+
+      cursor: pointer;
+
+      .logo-img {
+        @include height(12);
+        filter: grayscale(100%);
+        margin-right: 5vw;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          filter: grayscale(0%);
+        }
+
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

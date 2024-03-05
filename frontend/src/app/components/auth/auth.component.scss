@@ -1,0 +1,198 @@
+// AuthComponent.scss
+
+@import "../../../styles.scss";
+
+.auth-container {
+  display: flex;
+  flex-direction: row;
+  @include width(100);
+  @include height(100);
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    @include width(25);
+    justify-content: flex-start;
+    padding: 2vw;
+
+    .auth-title-left {
+      color: lighten($black, 15%);
+      @include font-archivo(700);
+      @include font-size(10);
+    }
+
+    .auth-subtitle-left {
+      padding: 1vh;
+      color: lighten($black, 15%);
+      @include font-archivo(400);
+      @include font-size(4);
+      text-align: center;
+    }
+
+    .auth-back {
+      @include button($primary, 1px solid $primary, $back-light);
+      @include width(10);
+      @include height(4);
+      border-radius: 5px;
+      @include font-archivo(500);
+      @include font-size(3);
+      letter-spacing: 1px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: all 0.3s ease-out;
+      margin-bottom: 2vh;
+
+      /* Button hover animation */
+      &:hover {
+        color: $white;
+        transform: scale(1);
+        background: lighten($primary, 10%);
+      }
+
+      &:hover::before {
+        width: 200%;
+        height: 200%;
+      }
+    }
+
+    .control-container {
+      margin-bottom: 2vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .auth-divider {
+        display: flex;
+        justify-content: center;
+        @include width(22);
+        @include font-archivo(300);
+        @include font-size(3);
+        position: relative;
+        text-align: center;
+        color: lighten($black, 15%);
+        margin-bottom: 2vh;
+
+        &::before,
+        &::after {
+          content: "";
+          background: black;
+          position: absolute;
+          top: 50%;
+          height: 1px;
+          @include width(5);
+          display: block;
+        }
+
+        &::before {
+          left: 5%; // adjust as needed
+        }
+
+        &::after {
+          right: 5%; // adjust as needed
+        }
+      }
+
+      .auth-register {
+        @include button($back-dark, 1px solid $back-dark, $back-light);
+        @include width(15);
+        @include height(4);
+        border-radius: 5px;
+        @include font-archivo(500);
+        @include font-size(3);
+        letter-spacing: 1px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.3s ease-out;
+
+        /* Button hover animation */
+        &:hover {
+          color: $white;
+          transform: scale(1);
+          background: lighten($back-dark, 10%);
+        }
+
+        &:hover::before {
+          width: 200%;
+          height: 200%;
+        }
+      }
+    }
+  }
+
+  .right-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 75%;
+    background-color: lighten($primary, 40%);
+
+    .auth-right-titles {
+      display: flex;
+      @include width(50);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2vw;
+
+      .auth-title-right {
+        @include font-archivo(300);
+        @include font-size(10);
+        color: lighten($black, 15%);
+      }
+
+      .auth-subtitle-right {
+        @include font-archivo(300);
+        @include font-size(5);
+        color: lighten($black, 15%);
+      }
+
+      .auth-platform {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+        @include button(transparent, 0px solid $primary, $primary);
+        @include width(20);
+        @include height(4);
+        border-radius: 5px;
+        @include font-archivo(500);
+        @include font-size(3);
+        letter-spacing: 1px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.3s ease-out;
+
+        .auth-plat-icon {
+          padding-left: .2vw;
+          @include font-size(4);
+        }
+
+        /* Button hover animation */
+        &:hover {
+          color: lighten($primary, 10%);
+          transform: scale(1);
+        }
+
+        &:hover::before {
+          width: 200%;
+          height: 200%;
+        }
+      }
+    }
+
+    img {
+      display: flex;
+      align-self: flex-end;
+      @include width(70);
+      height: auto;
+      bottom: 0;
+      object-fit: contain;
+    }
+  }
+}

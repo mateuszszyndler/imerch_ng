@@ -1,0 +1,102 @@
+@import "./variables";
+//@import "./controls";
+
+@mixin themes {
+  .light-theme {
+    --font-color: lighten($back-dark, 15%);
+    --border-color: lighten($back-dark, 40%);
+    --background-color: $back-light;
+    --hover-font-color: lighten($back-light, 20%);
+    --hover-border-color: lighten($back-dark, 40%);
+    --hover-background-color: darken($primary, 4%);
+
+    background-color: var(--background-color);
+    color: var(--font-color);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li,
+    label {
+      color: var(--font-color);
+    }
+
+    a {
+      color: var(--font-color);
+
+      &:hover {
+        color: var(--hover-font-color);
+      }
+    }
+
+    button,
+    input[type="checkbox"],
+    input[type="radio"] {
+      border-color: var(--border-color);
+      color: var(--font-color);
+      background-color: var(--background-color);
+
+      &:hover {
+        color: var(--hover-font-color);
+        border-color: var(--hover-border-color);
+        background-color: var(--hover-background-color);
+      }
+    }
+
+    .icon {
+      color: var(--font-color);
+    }
+  }
+
+  .dark-theme {
+    --font-color: $back-light;
+    --border-color: lighten($back-dark, 40%);
+    --background-color: $back-dark;
+    --hover-font-color: lighten($back-dark, 20%);
+    --hover-border-color: lighten($back-dark, 40%);
+    --hover-background-color: darken($primary, 4%);
+
+    background-color: var(--background-color);
+    color: var(--font-color);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li,
+    label {
+      color: var(--font-color);
+    }
+
+    a {
+      color: var(--font-color);
+
+      &:hover {
+        color: var(--hover-font-color);
+      }
+    }
+
+    button,
+    input[type="checkbox"],
+    input[type="radio"] {
+      border-color: var(--border-color);
+      color: var(--font-color);
+      background-color: var(--background-color);
+
+      &:hover {
+        color: var(--hover-font-color);
+        border-color: var(--hover-border-color);
+        background-color: var(--hover-background-color);
+      }
+    }
+
+    .icon {
+      color: var(--font-color);
+    }
+  }
+}
+
+@include themes;

@@ -1,0 +1,373 @@
+@import "../../../../styles.scss";
+
+.product-details-container {
+  display: flex;
+  @include width(65);
+  @include height(60);
+  gap: 1vw;
+
+  .image-gallery {
+    position: relative;
+    flex: 1;
+    @include width(40);
+    @include height(60);
+
+    .carousel {
+      position: relative;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: $spacing-small;
+      }
+
+      // Style for the Previous button
+      button:nth-of-type(1) {
+        position: absolute;
+        top: 50%;
+        left: $spacing-small;
+        transform: translateY(-50%);
+        background-color: rgba($black, 0.5);
+        color: $white;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        z-index: 1; // Ensures it's above the image
+
+        &::before {
+          content: "←";
+        }
+      }
+
+      // Style for the Next button
+      button:nth-of-type(3) {
+        position: absolute;
+        top: 50%;
+        right: $spacing-small;
+        transform: translateY(-50%);
+        background-color: rgba($black, 0.5);
+        color: $white;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        z-index: 1; // Ensures it's above the image
+
+        &::before {
+          content: "→";
+        }
+      }
+    }
+
+    .indicators {
+      position: absolute;
+      bottom: $spacing-small;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: $spacing-small;
+      background-color: transparent; // Removed the background color for the indicators.
+
+      div {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $gray;
+
+        &.active {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  .product-info {
+    display: flex;
+    @include width(30);
+    @include height(60);
+    flex-direction: column;
+    gap: 1vh;
+    background-color: $white;
+    padding: 3vh;
+    border-radius: 3px;
+    box-shadow: 1px 2px 8px rgba($black, 0.1);
+
+    h3 {
+      @include font-size(2.5);
+      @include font-archivo(500);
+      color: lighten($primary, 15%);
+      text-transform: uppercase;
+      margin: 1vh 0 0 0;
+    }
+
+    h1 {
+      @include font-size(6);
+      @include font-archivo(700);
+      color: lighten($black, 15%);
+      margin: 2vh 0 0 0;
+    }
+
+    h2 {
+      background-color: $imerch-gold;
+      color: $back-dark;
+      text-align: center;
+      border-radius: 10px;
+      @include font-size(2.5);
+      @include font-archivo(500);
+      @include width(5);
+      padding: 1vh;
+    }
+
+    .price-rate {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      @include width(25);
+
+      .product-price {
+        @include font-size(7);
+        @include font-archivo(500);
+        color: $accent;
+      }
+
+      .rating {
+        display: flex;
+        justify-content: center;
+        @include font-size(7);
+        color: $imerch-gold;
+
+        .empty {
+          color: lighten($black, 75%);
+        }
+      }
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $gray-light;
+      border-radius: $spacing-small;
+
+      div {
+        display: flex;
+        cursor: pointer;
+        @include font-size(3.5);
+        @include font-archivo(500);
+        @include width(10);
+        text-align: center;
+        justify-content: center;
+        padding: 1vh;
+        background-color: transparent; // Remove the background color for tabs
+        transition: all 0.3s;
+        border-bottom: 2px solid transparent; // Add a transparent bottom border for alignment
+        border-radius: 0; // Remove the border-radius
+        color: lighten($black, 15%); // Color for non-active tabs
+
+        &:hover {
+          border-bottom: 2px solid $accent; // Add hover effect for better UX
+        }
+
+        &.active {
+          border-bottom: 2px solid $accent; // Accent color for the active tab
+          color: $accent; // Set text color for active tab
+        }
+      }
+    }
+
+    .tab-content-description {
+      @include font-size(3.5);
+      @include font-archivo(500);
+      padding: 2vh;
+    }
+
+    .specification-row {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      justify-content: space-between;
+      align-items: center;
+      @include width(20);
+      @include height(5);
+
+      /* Color Dropdown styling */
+      .color-selector {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        @include width(5);
+        @include height(5);
+
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .dropbtn {
+          background-color: transparent;
+          color: $black;
+          border: 1px solid $gray-light;
+          border-radius: 30px;
+          cursor: pointer;
+          @include width(3);
+          @include height(3);
+          display: flex;
+          align-items: center;
+          justify-content: left;
+          transition: background-color 0.3s;
+
+          .color-circle {
+            border-radius: 50%;
+            @include width(1);
+            @include height(2);
+          }
+
+          &::after {
+            content: "▼"; // This is a simple arrow symbol, but you can also use icons/fonts like Font Awesome
+            margin-left: $spacing-small; // Adjust as needed
+            font-size: 0.8rem; // Adjust as needed
+            transition: transform 0.3s; // For animation
+          }
+        }
+
+        .dropdown:hover .dropbtn::after {
+          transform: rotate(180deg); // Rotate arrow to point upwards when dropdown is open
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: $white;
+          min-width: 40px;
+          box-shadow: 0px 8px 16px 0px rgba($black, 0.2);
+          z-index: 1;
+          cursor: pointer;
+
+          a {
+            color: $black;
+            padding: $spacing-small;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .color-circle {
+              border-radius: 50%;
+              @include width(1);
+              @include height(2);
+            }
+
+            &:hover {
+              background-color: $gray-lighter;
+            }
+          }
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+      }
+
+      /* Quantity Spinner Styling */
+      .quantity-spinner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        @include width(4);
+        @include height(5);
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        input[type="number"] {
+          -moz-appearance: textfield;
+          appearance: textfield;
+        }
+
+        .spinner-div {
+          display: flex;
+          border: 1px solid $gray-light;
+          border-radius: 20px; // Full height of the button to achieve a pill look
+
+          button {
+            padding: $spacing-small;
+            border: none; // Remove border to make it fit seamlessly inside the pill
+            background-color: $back-light;
+            transition: background-color 0.3s;
+
+            &:first-child {
+              border-top-left-radius: 30px; // Top-left rounded for the left button
+              border-bottom-left-radius: 30px; // Bottom-left rounded for the left button
+            }
+
+            &:last-child {
+              border-top-right-radius: 30px; // Top-right rounded for the right button
+              border-bottom-right-radius: 30px; // Bottom-right rounded for the right button
+            }
+
+            &:hover {
+              background-color: $gray-lighter;
+            }
+          }
+
+          input {
+            width: 50px;
+            text-align: center;
+            padding: $spacing-small 0; // Only vertical padding
+            border: none; // Remove individual border for seamless appearance inside the pill
+            outline: none; // Optional: remove focus outline if you want a cleaner look
+
+            &:focus {
+              // Optional: Add a subtle shadow on focus for accessibility
+              box-shadow: 0 0 3px rgba($black, 0.3);
+            }
+          }
+        }
+      }
+
+      /* Total Price Styling */
+      .total-price-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .total-price {
+          font-weight: bold;
+          color: $accent-2;
+          font-size: 1.5em;
+          margin-top: $spacing-small;
+        }
+      }
+    }
+
+    .add-to-wishlist {
+      @include button(transparent, 1px solid $back-dark, $back-dark);
+      @include height(4);
+      @include width(10);
+      transition: all 0.3s;
+      border-radius: 10px;
+    }
+
+    .add-to-cart {
+      @include button($primary, 1px solid $primary, $back-light);
+      @include height(4);
+      @include width(10);
+      transition: all 0.3s;
+      border-radius: 10px;
+    }
+  }
+}

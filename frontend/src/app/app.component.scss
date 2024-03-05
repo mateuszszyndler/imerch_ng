@@ -1,0 +1,35 @@
+@import "../styles.scss";
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  @include cwidth(100);
+  @include cheight(100);
+
+ router-outlet {
+    @include flex-layout(column, center, center);
+  }
+/*
+  .theme-switcher {
+    position: fixed;
+    @include width(3);
+    @include height(6);
+    background-color: $back-dark;
+    border: none;
+    border-radius: 50px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    // other button styles here
+
+    .icn-switch {
+      color: $back-light;
+      @include font-size(5);
+
+      &:hover {
+        color: $secondary;
+      }
+    }
+  } */
+}

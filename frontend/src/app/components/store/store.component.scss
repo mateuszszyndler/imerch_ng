@@ -1,0 +1,10 @@
+@import "../../../styles.scss";
+
+.store-container {
+  display: flex;
+  flex-direction: column;
+  @include cwidth(100);
+  @include cheight(100);
+  margin: 0;
+  padding: 0;
+}

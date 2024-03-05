@@ -1,0 +1,18 @@
+@import "../../../../styles.scss";
+
+.banner-container {
+  display: flex;
+  margin-top: 10vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: $back-dark;
+  @include cwidth(100);
+  @include cheight(10);
+
+  .banner-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}

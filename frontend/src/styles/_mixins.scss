@@ -1,0 +1,486 @@
+/* _mixins.scss */
+
+// Import variables to use in mixins
+@import './variables';
+
+
+@mixin font-size($size) {
+  $min: #{($size * 0.1)}dvh;
+  $max: #{($size * 0.7)}dvh;
+  font-size: clamp(#{$min}, #{$size * 0.5}dvh, #{$max});
+}
+
+/* Height size simplification */
+@mixin height($size) {
+  height: #{$size * 1}dvh;
+}
+
+/* Height size simplification */
+@mixin width($size) {
+  width: #{$size * 1}dvw;
+}
+
+/* Height size simplification */
+@mixin cheight($size) {
+  height: calc(#{$size * 1}vh);
+}
+
+/* Width size simplification */
+@mixin cwidth($size) {
+  width: calc(#{$size * 1}vw - 17px);
+}
+
+
+/* Icon size simplification */
+@mixin icon-size($size) {
+  width: #{$size * 0.3}dvw;
+  height: #{$size * 0.3}dvh;
+}
+
+/* Mixins */
+@mixin reset-margin-padding-border {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@mixin reset-text {
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+}
+
+@mixin reset-scrollbar {
+  &::-webkit-scrollbar {
+    width: 0px;
+    scroll-behavior: smooth;
+    background: transparent;
+  }
+}
+
+@mixin reset-display {
+  display: flex;
+}
+
+@mixin font-archivo($weight: 400, $style: normal) {
+  font-family: $font-family;
+  font-weight: $weight;
+  font-style: if($weight >= 600, "italic", $style);
+}
+
+
+// Responsive design mixin
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: $breakpoint-small) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
+    @media (min-width: $breakpoint-medium) {
+      @content;
+    }
+  } @else if $breakpoint == large {
+    @media (min-width: $breakpoint-large) {
+      @content;
+    }
+  } @else if $breakpoint == xlarge {
+    @media (min-width: $breakpoint-xlarge) {
+      @content;
+    }
+  }
+}
+
+// Flex container mixin
+@mixin flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Custom font mixin
+@mixin font($family: $font-family, $size: $font-size-base, $weight: normal, $style: normal, $color: $black, $lineHeight: $line-height-base, $letterSpacing: normal) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  font-style: $style;
+  color: $color;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpacing;
+}
+
+// Custom button mixin
+@mixin button($bgColor: $primary, $textColor: $white) {
+  background-color: $bgColor;
+  color: $textColor;
+  border: none;
+  border-radius: 0.25rem;
+  padding: $spacing-small $spacing-base;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: darken($bgColor, 10%);
+  }
+
+  &:active {
+    background-color: darken($bgColor, 20%);
+  }
+
+  &:disabled {
+    background-color: $gray;
+    cursor: not-allowed;
+  }
+}
+
+/* Border radius simplification */
+@mixin border-radius($radius) {
+  border-radius: #{$radius * 1}rem;
+}
+
+/* Box-shadow simplification */
+@mixin box-shadow($x: 0, $y: 10px, $blur: 20px, $color: rgba($black, 0.1)) {
+  box-shadow: $x $y $blur $color;
+}
+
+/* Transition simplification */
+@mixin transition($props: all, $time: 0.3s, $type: ease-in-out) {
+  transition: $props $time $type;
+}
+
+/* Absolute center mixin */
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Fixed aspect ratio mixin */
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    content: "";
+    display: block;
+    padding-top: ($height / $width) * 100%;
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+
+/* Text truncation mixin */
+@mixin truncate($width) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: $width;
+}
+
+/* Clearfix mixin */
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/* Print media query */
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+/* Retina media query */
+@mixin retina {
+  @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+/* Center text vertically */
+@mixin center-text-vertically {
+  display: flex;
+  align-items: center;
+}
+
+/* Positioning mixin */
+@mixin position($type: relative, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $type;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+/* Flexbox grid column */
+@mixin grid-column($number) {
+  flex: 0 0 auto;
+  width: 100% / $number;
+}
+
+/* Hover effect */
+@mixin hover-effect {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Background cover */
+@mixin bg-cover($url) {
+  background: url($url) no-repeat center center/cover;
+}
+
+/* Center block element */
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Transform mixin */
+@mixin transform($function) {
+  transform: $function;
+}
+
+/* Rotate mixin */
+@mixin rotate($degree) {
+  transform: rotate($degree);
+}
+
+/* Scale mixin */
+@mixin scale($ratio) {
+  transform: scale($ratio);
+}
+
+/* Translate mixin */
+@mixin translate($x, $y) {
+  transform: translate($x, $y);
+}
+
+
+/* Flex grow mixin */
+@mixin flex-grow($grow) {
+  flex-grow: $grow;
+}
+
+/* Skew mixin */
+@mixin skew($x, $y: $x) {
+  transform: skew($x, $y);
+}
+
+/* Flex shrink mixin */
+@mixin flex-shrink($shrink) {
+  flex-shrink: $shrink;
+}
+
+/* Padding mixin */
+@mixin padding($top, $right: $top, $bottom: $top, $left: $right) {
+  padding: $top $right $bottom $left;
+}
+
+/* Margin mixin */
+@mixin margin($top, $right: $top, $bottom: $top, $left: $right) {
+  margin: $top $right $bottom $left;
+}
+
+/* Border mixin */
+@mixin border($width, $style, $color) {
+  border: $width $style $color;
+}
+
+/* Border top mixin */
+@mixin border-top($width, $style, $color) {
+  border-top: $width $style $color;
+}
+
+/* Border right mixin */
+@mixin border-right($width, $style, $color) {
+  border-right: $width $style $color;
+}
+
+/* Border bottom mixin */
+@mixin border-bottom($width, $style, $color) {
+  border-bottom: $width $style $color;
+}
+
+/* Border left mixin */
+@mixin border-left($width, $style, $color) {
+  border-left: $width $style $color;
+}
+
+/* Background gradient mixin */
+@mixin background-gradient($start-color, $end-color, $angle: 180deg) {
+  background: $start-color;
+  background: linear-gradient($angle, $start-color, $end-color);
+}
+
+/* Text shadow mixin */
+@mixin text-shadow($x: 1px, $y: 1px, $blur: 1px, $color: rgba(0,0,0,0.5)) {
+  text-shadow: $x $y $blur $color;
+}
+
+/* Opacity mixin */
+@mixin opacity($value) {
+  opacity: $value;
+}
+
+/* Vertical align mixin */
+@mixin vertical-align($value: middle) {
+  vertical-align: $value;
+}
+
+/* Horizontal align mixin */
+@mixin horizontal-align($value: center) {
+  text-align: $value;
+}
+
+/* Z-index mixin */
+@mixin z-index($value) {
+  z-index: $value;
+}
+
+/* Font weight mixin */
+@mixin font-weight($weight) {
+  font-weight: $weight;
+}
+
+/* Text decoration mixin */
+@mixin text-decoration($decoration) {
+  text-decoration: $decoration;
+}
+
+/* Position absolute mixin */
+@mixin position-absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+/* Position relative mixin */
+@mixin position-relative($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: relative;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+/* Background image mixin */
+@mixin bg-image($url) {
+  background-image: url($url);
+}
+
+/* Background size mixin */
+@mixin bg-size($size) {
+  background-size: $size;
+}
+
+/* Background repeat mixin */
+@mixin bg-repeat($repeat) {
+  background-repeat: $repeat;
+}
+
+/* Background position mixin */
+@mixin bg-position($position) {
+  background-position: $position;
+}
+
+/* Flex flow mixin */
+@mixin flex-flow($flow) {
+  flex-flow: $flow;
+}
+
+/* Text align mixin */
+@mixin text-align($align) {
+  text-align: $align;
+}
+
+/* Max width mixin */
+@mixin max-width($width) {
+  max-width: $width;
+}
+
+/* Min width mixin */
+@mixin min-width($width) {
+  min-width: $width;
+}
+
+/* Max height mixin */
+@mixin max-height($height) {
+  max-height: $height;
+}
+
+/* Min height mixin */
+@mixin min-height($height) {
+  min-height: $height;
+}
+
+/* Overflow mixin */
+@mixin overflow($overflow) {
+  overflow: $overflow;
+}
+
+/* Overflow x mixin */
+@mixin overflow-x($overflow) {
+  overflow-x: $overflow;
+}
+
+/* Overflow y mixin */
+@mixin overflow-y($overflow) {
+  overflow-y: $overflow;
+}
+
+/* Line height mixin */
+@mixin line-height($lineHeight) {
+  line-height: $lineHeight;
+}
+
+/* Letter spacing mixin */
+@mixin letter-spacing($spacing) {
+  letter-spacing: $spacing;
+}
+
+/* Word spacing mixin */
+@mixin word-spacing($spacing) {
+  word-spacing: $spacing;
+}
+
+/* Font style mixin */
+@mixin font-style($style) {
+  font-style: $style;
+}
+
+/* Font variant mixin */
+@mixin font-variant($variant) {
+  font-variant: $variant;
+}
+
+/* Text transform mixin */
+@mixin text-transform($transform) {
+  text-transform: $transform;
+}
+
+/* Justify content mixin */
+@mixin justify-content($justify) {
+  justify-content: $justify;
+}
+
+/* Flex layout mixin */
+@mixin flex-layout($direction: row, $justify: flex-start, $align-items: stretch, $wrap: nowrap, $align-content: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align-items;
+  flex-wrap: $wrap;
+  align-content: $align-content;
+}

@@ -1,0 +1,29 @@
+@import '../../../../styles.scss';
+
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 15vh auto;
+}
+
+.title {
+  @include font-archivo(700);
+  @include font-size(10);
+  color: lighten($black, 5%);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  padding: 5vh;
+  cursor: default
+}
+
+.video {
+  width: 80vw;
+  height: 70vh;
+  border-radius: 16px;
+}

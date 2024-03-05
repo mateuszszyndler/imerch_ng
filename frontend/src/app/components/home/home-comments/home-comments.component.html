@@ -1,0 +1,33 @@
+<div class="comment-container">
+  <div class="card" *ngFor="let data of comments | async">
+    <ng-icon class="card-icon" name="lucideQuote"></ng-icon>
+    <div class="rating">
+      <ng-container *ngFor="let i of range(data.comment.rating)">
+        <ng-icon name="ionStarSharp"></ng-icon>
+      </ng-container>
+      <ng-container *ngFor="let i of range(5 - data.comment.rating)">
+        <ng-icon name="ionStarSharp" class="empty"></ng-icon>
+      </ng-container>
+    </div>
+    <div class="product-name">{{ data.product.name }}</div>
+    <div class="comment">"{{ data.comment.text }}"</div>
+    <div class="user-info">
+      <div class="user-avatar">
+        <img
+          *ngIf="data.user.avatar; else defaultAvatar"
+          [src]="data.user.avatar"
+          alt="User Avatar"
+        />
+        <ng-template #defaultAvatar>
+          <ng-icon class="comm-user" name="lucideUser"></ng-icon>
+        </ng-template>
+      </div>
+      <div class="user-name">
+        {{ data.user.firstname }} {{ data.user.lastname }}
+      </div>
+    </div>
+    <div class="comment-footer">
+      <div class="date">{{ data.comment.createdAt | date : "fullDate" }}</div>
+    </div>
+  </div>
+</div>

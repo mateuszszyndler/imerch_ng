@@ -1,0 +1,50 @@
+<div class="auth-container">
+  <div class="left-container">
+    <h1 class="auth-title-left" [@textAnimation]>iMerch</h1>
+    <p class="auth-subtitle-left" [@textAnimation]>{{ subtitleLeft }}</p>
+    <div class="control-container" [@fadeSlideInOut]>
+      <button
+        *ngIf="showRegisterComponent"
+        (click)="switchComponent('login')"
+        class="auth-back"
+        [@fadeSlideInOut]
+      >
+        Wróc do Logowania
+      </button>
+      <app-login *ngIf="showLoginComponent" [@fadeSlideInOut]></app-login>
+      <app-register
+        *ngIf="showRegisterComponent"
+        [@fadeSlideInOut]
+      ></app-register>
+      <div
+        *ngIf="showLoginComponent"
+        class="auth-divider"
+        [@fadeSlideInOut]
+      >
+        Nie masz jeszcze konta?
+      </div>
+
+      <!-- Divider -->
+      <button
+        *ngIf="showLoginComponent"
+        (click)="switchComponent('register')"
+        class="auth-register"
+        [@fadeSlideInOut]
+      >
+        Zarejestruj się
+      </button>
+    </div>
+  </div>
+
+  <div class="right-container">
+    <div class="auth-right-titles">
+      <h1 class="auth-title-right" [@fadeSlideInOut]>Twórz swoje produkty i sprzedawaj swój brand!</h1>
+      <p class="auth-subtitle-right" [@fadeSlideInOut]>{{ subtitleRight }}</p>
+      <button (click)="routeToHome()" [@fadeSlideInOut] class="auth-platform">
+        {{ buttonText }}
+        <ng-icon class="auth-plat-icon" name="lucideArrowRight"></ng-icon>
+      </button>
+    </div>
+    <img [src]="imgURL" alt="Description of image" [@fadeSlideInOut] />
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="product-details-container" *ngIf="product && productId">
+
+  <button (click)="goBack()">Back</button>
+<!-- Rest of the template -->
+
+  <!-- Image Gallery -->
+  <div class="image-gallery">
+    <button (click)="previousImage()">Previous</button>
+    <div class="carousel">
+      <img
+        *ngIf="product"
+        [src]="product.preview_images[currentImageIndex]"
+        alt="Product Image"
+      />
+    </div>
+    <button (click)="nextImage()">Next</button>
+    <div class="indicators">
+      <div
+        *ngFor="let image of product?.preview_images; let i = index"
+        [class.active]="i === currentImageIndex"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Product Details -->
+  <div class="product-info">
+    <h3>{{ product.type }}</h3>
+    <h1>{{ product.name }}</h1>
+    <h2 *ngIf="product?.best" class="bestseller-badge">Bestseller</h2>
+    <div class="price-rate">
+      <p class="product-price">{{ product.price }} zł</p>
+      <div class="rating">
+        <ng-container *ngFor="let i of range(product.rating ?? 0)">
+          <ng-icon name="ionStarSharp"></ng-icon>
+        </ng-container>
+        <ng-container *ngFor="let i of range(5 - (product.rating ?? 0))">
+          <ng-icon name="ionStarSharp" class="empty"></ng-icon>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div
+        (click)="setActiveTab('description')"
+        [class.active]="activeTab === 'description'"
+      >
+        Opis
+      </div>
+      <div
+        (click)="setActiveTab('details')"
+        [class.active]="activeTab === 'details'"
+      >
+        Detale
+      </div>
+      <div
+        (click)="setActiveTab('comments')"
+        [class.active]="activeTab === 'comments'"
+      >
+        Komentarze
+      </div>
+    </div>
+
+    <div class="tabs-content">
+      <div class="tab-content-description" *ngIf="activeTab === 'description'">
+        {{ product.description }}
+      </div>
+
+      <div *ngIf="activeTab === 'details'" class="tab-content">
+        {{ product.predefined_id }}
+      </div>
+
+      <div *ngIf="activeTab === 'comments'" class="tab-content">
+        {{ product.comments }}
+      </div>
+    </div>
+
+    <div class="specification-row">
+      <!-- Color Selector with Label -->
+      <div class="color-selector">
+        <label for="colorDropdown">Color</label>
+        <div class="dropdown">
+          <button class="dropbtn">
+            <div
+              class="color-circle"
+              [ngStyle]="{ 'background-color': selectedColor }"
+            ></div>
+          </button>
+          <div class="dropdown-content">
+            <a
+              *ngFor="let color of product?.colors"
+              (click)="selectedColor = color"
+            >
+              <div
+                class="color-circle"
+                [ngStyle]="{ 'background-color': color }"
+              ></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quantity Spinner with Label -->
+      <div class="quantity-spinner">
+        <label>Quantity</label>
+        <div class="spinner-div">
+          <button (click)="decreaseQuantity()">-</button>
+          <input [(ngModel)]="quantity" type="number" />
+          <button (click)="increaseQuantity()">+</button>
+        </div>
+      </div>
+
+      <!-- Total Price with Label -->
+      <div class="total-price-container">
+        <label>Total Price</label>
+        <div class="total-price">{{ getTotalPrice() }} zł</div>
+      </div>
+    </div>
+
+    <button class="add-to-wishlist" (click)="addToWishlist()">
+      Add to Wishlist
+    </button>
+    <button class="add-to-cart" (click)="addToCart()">Add to Cart</button>
+  </div>
+</div>

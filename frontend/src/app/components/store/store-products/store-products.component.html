@@ -1,0 +1,113 @@
+<div
+  *ngIf="filteredProducts$ | async as filteredProducts"
+  class="store-products"
+>
+  <form [formGroup]="filterForm" class="filters-container">
+    <div>
+      <input
+        class="filters-search"
+        id="search"
+        type="text"
+        formControlName="search"
+        placeholder="Szukaj"
+      />
+    </div>
+
+    <!-- Categories, Types, Sizes, all with similar logic -->
+    <ng-container *ngFor="let filter of ['categories', 'types', 'sizes']">
+      <div [formArrayName]="filter" class="filters-inputs">
+        <label class="filters-title">{{ filterNamesMapping[filter] }}:</label>
+        <div *ngFor="let ctrl of getFormArray(filter).controls; index as i">
+          <ng-container *ngIf="i < 4 || showAllFilters[filter]">
+            <input type="checkbox" [formControlName]="i" />
+            <label class="filters-value">{{ uniqueMap[filter][i] }}</label>
+          </ng-container>
+        </div>
+        <button (click)="toggleShowMore(filter)" class="show-more">
+          {{ showAllFilters[filter] ? "Mniej" : "Więcej" }}
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Colors filter with color circle and show more -->
+    <div formArrayName="colors" class="filters-inputs">
+      <label class="filters-title">Dostępne kolory:</label>
+      <div class="color-container">
+        <ng-container
+          *ngFor="let ctrl of getFormArray('colors').controls; index as i"
+        >
+          <ng-container *ngIf="i < 8 || showAllFilters['colors']">
+            <input
+              class="color-checkbox"
+              type="checkbox"
+              [formControlName]="i"
+              [id]="'color' + i"
+            />
+            <label [for]="'color' + i" class="color-label">
+              <span
+                [style.background]="uniqueColors[i]"
+                class="color-circle"
+              ></span>
+            </label>
+          </ng-container>
+        </ng-container>
+      </div>
+      <button (click)="toggleShowMore('colors')" class="show-more">
+        {{ showAllFilters["colors"] ? "Mniej" : "Więcej" }}
+      </button>
+    </div>
+
+    <div class="filters-inputs">
+      <label class="filters-title">Cena:</label>
+      <div class="price-inputs">
+        <input
+          class="filters-price"
+          id="minPrice"
+          type="number"
+          formControlName="minPrice"
+        />
+        <input
+          class="filters-price"
+          id="maxPrice"
+          type="number"
+          formControlName="maxPrice"
+        />
+      </div>
+    </div>
+
+    <!-- Button to clear all filters -->
+    <button class="clear-all" (click)="clearAllFilters()">
+      Wyczyść filtry
+    </button>
+  </form>
+
+  <div class="products-container">
+    <div class="filter-chips">
+      <label for="filter-chips" class="chips-label">Filtry:</label>
+      <ng-container *ngFor="let chip of filterChips">
+        <div class="chip">
+          {{ chip.label }}
+          <button
+            class="chip-delete"
+            (click)="clearFilter(chip.key, chip.index)"
+          >
+            X
+          </button>
+        </div>
+      </ng-container>
+    </div>
+    <div class="product-cards">
+      <ng-container *ngIf="selectedProductId; else productCards">
+        <app-product-details [productId]="selectedProductId"></app-product-details>
+      </ng-container>
+      <ng-template #productCards>
+        <div *ngFor="let product of filteredProducts">
+          <app-product-card
+            [product]="product"
+            (cardClick)="showProductDetails(product._id)"
+          ></app-product-card>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

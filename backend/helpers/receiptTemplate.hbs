@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Receipt</title>
+    <style>
+      body { font-family: Arial, sans-serif; } .header { text-align: center; margin-bottom: 20px; } .info { margin-bottom: 20px; } .section { margin-bottom: 20px; } .section-title { font-weight: bold; } .section-content { margin-top: 10px; }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Receipt</h1>
+    </div>
+    <div class="info">
+      <p>Payment ID: {{paymentId}}</p>
+      <p>Order ID: {{orderId}}</p>
+      <p>Amount Paid: {{amountPaid}} {{currency}}</p>
+      <!-- Include additional information as needed -->
+    </div>
+    <div class="section">
+      <h2 class="section-title">Payment Details</h2>
+      <div class="section-content">
+        <!-- Include payment details -->
+      </div>
+    </div>
+    <div class="section">
+      <h2 class="section-title">Order Details</h2>
+      <div class="section-content">
+        <!-- Include order details -->
+      </div>
+    </div>
+    <!-- Include additional sections or content as needed -->
+  </body>
+</html>

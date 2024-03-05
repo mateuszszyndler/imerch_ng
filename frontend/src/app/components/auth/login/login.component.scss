@@ -1,0 +1,66 @@
+@import "../../../../styles.scss";
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+
+
+
+    input {
+      margin-bottom: 1rem;
+      @include width(20);
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      transition: all 0.3s ease;
+      @include font-size(3);
+      @include font-archivo(300);
+    }
+
+    .login-button {
+      @include button($primary, 1px solid $primary, $back-light);
+      @include width(15);
+      @include height(4);
+      border-radius: 5px;
+      @include font-archivo(500);
+      @include font-size(3);
+      letter-spacing: 1px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: all 0.3s ease-out;
+
+      /* Button hover animation */
+      &:hover {
+        color: $white;
+        transform: scale(1);
+        background: lighten($primary, 10%);
+      }
+
+      &:hover::before {
+        width: 200%;
+        height: 200%;
+      }
+    }
+
+  }
+
+  .social-login {
+    display: flex;
+    justify-content: space-between;
+    @include width(15);
+    align-items: center;
+    margin-bottom: 2vh;
+
+  }
+}

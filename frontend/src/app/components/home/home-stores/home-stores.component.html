@@ -1,0 +1,31 @@
+<div class="home-stores">
+  <h1 class="home-stores-title">Sklepy na naszej platformie</h1>
+  <ng-container *ngIf="topStores$ | async as topStores">
+    <div class="store-row">
+      <a
+        class="store-card"
+        *ngFor="let store of topStores.slice(0, 5); trackBy: trackByStoreId"
+        [routerLink]="['/store', store.name | sanitizeUrl]">
+        <div class="store-avatar">
+          <img [src]="store.avatar || 'assets/images/default-avatar.png'" alt="{{store.name}}" />
+        </div>
+        <div class="store-name">
+          {{store.name}}
+        </div>
+      </a>
+    </div>
+    <div class="store-row">
+      <a
+        class="store-card"
+        *ngFor="let store of topStores.slice(5, 10); trackBy: trackByStoreId"
+        [routerLink]="['/store', store.name | sanitizeUrl]">
+        <div class="store-avatar">
+          <img [src]="store.avatar || 'assets/images/default-avatar.png'" alt="{{store.name}}" />
+        </div>
+        <div class="store-name">
+          {{store.name}}
+        </div>
+      </a>
+    </div>
+  </ng-container>
+</div>

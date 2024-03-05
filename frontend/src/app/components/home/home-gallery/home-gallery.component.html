@@ -1,0 +1,16 @@
+<div class="home-gallery-container">
+  <div class="carousel-title">
+    <h2 class="gallery-title">Nasze zrealizowane projekty</h2>
+  </div>
+  <div class="carousel-container">
+    <div *ngFor="let product of products$ | async; let i=index" [class.active]="i == currentSlide" class="carousel-item">
+      <img [src]="product.preview_images[0]" [alt]="product.name" class="product-image"/>
+      <div class="overlay">
+        <h3 class="image-title">{{ product.name }}</h3>
+        <button (click)="navigateToProductDetails(product._id)" class="details-button">Szczegóły</button>
+      </div>
+    </div>
+    <button class="carousel-button left" (click)="prevSlide()">&lt;</button>
+    <button class="carousel-button right" (click)="nextSlide()">&gt;</button>
+  </div>
+</div>

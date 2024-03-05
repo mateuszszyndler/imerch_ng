@@ -1,0 +1,134 @@
+@import "../../../../styles.scss";
+
+.home-hero-container {
+  @extend %reset-styles;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10vh 10vw;
+  margin: 0 0 10vh 0;
+  @include height(100);
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include width(37);
+
+    .small-title {
+      @include font-archivo(400);
+      @include font-size(5.5);
+      word-spacing: 0.4vw;
+      color: lighten($primary, 15%);
+      margin: 0 0 4vh 0.5vh;
+      border-radius: 20px;
+    }
+
+    .large-title {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+      @include font-archivo(900);
+      @include font-size(12);
+      @include width(45);
+      color: $black;
+      cursor: default;
+      margin: 0 0 5vh 0;
+
+      .print-on-demand {
+        display: inline; // ensure that the span stays in line
+        color: $primary !important;
+        white-space: nowrap; // this prevents the text within this span from wrapping
+      }
+    }
+
+    .subtitle {
+      @include font-archivo(300);
+      @include font-size(7);
+      @include width(37);
+      color: lighten($back-dark, 30%);
+      margin: 0 0 5vh 0.5vh;
+    }
+
+    .cta-container {
+      display: flex;
+      justify-content: start;
+      gap: 1em;
+
+      .cta-btn {
+        @include font-archivo(500);
+        @include font-size(4);
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease-out;
+      }
+
+      .learn-more-btn {
+        @include button(lighten($secondary, 23%), 1px solid lighten($secondary, 10%), $primary);
+        border-radius: 2px;
+        @include width(15);
+        @include height(5);
+        @include font-size(4);
+        &:hover {
+          border: none;
+          color: $white;
+          transform: scale(1);
+          background: lighten($primary, 10%);
+        }
+      }
+
+      .start-btn {
+        @include button($primary, 1px solid $primary, $back-light);
+        @include width(15);
+        @include height(5);
+        border-radius: 2px;
+        @include font-size(4);
+        padding: 0.5em 1em;
+        letter-spacing: 1px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.3s ease-out;
+
+        /* Button hover animation */
+        &:hover {
+          color: $white;
+          transform: scale(1);
+          background: lighten($primary, 10%);
+        }
+
+        &:hover::before {
+          width: 200%;
+          height: 200%;
+        }
+      }
+    }
+  }
+
+  .image-container {
+    @include width(44);
+    img {
+      @include width(50);
+      @include height(60);
+    }
+  }
+}
+
+@media (max-width: $breakpoint-xlarge) {
+  .home-hero-container {
+    flex-direction: column-reverse;
+    height: auto;
+
+    .content-container {
+      width: 100%;
+      text-align: center;
+    }
+
+    .image-container {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<!-- home-faq.component.html -->
+
+<div class="faq-container">
+  <h1>Najczęściej Zadawane Pytania na temat iMerch</h1>
+  <cdk-accordion class="example-accordion">
+    <cdk-accordion-item
+      *ngFor="let faq of faqs | async; let index = index;"
+      #accordionItem="cdkAccordionItem"
+      class="example-accordion-item"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index">
+      <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+        {{ faq.question }}
+
+      </div>
+      <div
+        class="example-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index"
+        [attr.aria-labelledby]="'accordion-header-' + index">
+        {{ faq.answer }}
+      </div>
+    </cdk-accordion-item>
+  </cdk-accordion>
+</div>

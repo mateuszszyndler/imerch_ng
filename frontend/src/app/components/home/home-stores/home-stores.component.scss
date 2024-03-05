@@ -1,0 +1,78 @@
+@import "../../../../styles.scss";
+
+.home-stores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+
+  .home-stores-title {
+    @include font-archivo(700);
+    @include font-size(10);
+    color: lighten($black, 5%);
+    text-align: center;
+    margin-bottom: 7vh;
+  }
+
+  .store-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .store-card {
+    position: relative;
+    @include width(15);
+    @include height(30);
+    padding-top: calc(20% - 2rem); // Maintain square ratio
+    margin: 1rem; // Add some space around each card
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.005);
+    }
+
+    .store-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      img {
+        object-fit: cover; // Ensures the image covers the entire space of the card
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .store-name {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 0.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      color: $back-light;
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint-small) {
+  .home-stores {
+    .store-row {
+      flex-direction: column;
+    }
+
+    .store-card {
+      width: 100%; // Let it occupy full width on small screens
+      padding-top: 100%; // Maintain square ratio
+      margin-bottom: 1rem;
+    }
+  }
+}
+

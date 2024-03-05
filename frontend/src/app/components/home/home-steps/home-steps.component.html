@@ -1,0 +1,21 @@
+<div class="steps-container">
+  <div class="steps-title">
+    <h1>Twój start z iMerch – prosty przewodnik</h1>
+    <h2>
+      Tworzymy naszą platformę z myślą o łatwości użytkowania. Oto kilka kroków,
+      które pomogą Ci zacząć swoją przygodę z iMerch.
+    </h2>
+  </div>
+  <div class="steps-cards">
+    <div
+      class="steps-card"
+      *ngFor="let step of steps; index as i"
+    >
+    <div class="steps-icon-circle">
+      <img class="step-icon" [src]="step.image" alt="">
+    </div>
+      <h3>{{ step.title }}</h3>
+      <p>{{ step.description }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="home-plans-container">
+  <h2 class="home-plans-header">Nasze Plany i Subskrypcje</h2>
+  <div class="home-plans-card-container">
+    <ng-container *ngFor="let subscription of subscriptions$ | async">
+      <div class="plan-card" [ngClass]="{'pro-plan': subscription.type === 'pro'}" *ngIf="subscription.is_active">
+        <div class="plan-header">
+          <h3 class="plan-name">{{ subscription.name }}</h3>
+          <div class="best-badge" *ngIf="subscription.type === 'pro'">Najpopularniejszy</div>
+        </div>
+        <p class="plan-description">{{ subscription.description }}</p>
+        <div class="plan-price">
+          <p class="plan-regular-price">{{ subscription.price | currency }}/month</p>
+          <p *ngIf="subscription.discount" class="plan-annual-price">
+            {{ calculateAnnualPrice(subscription.price, subscription.discount) | currency }}/year
+            <span class="old-price">{{ subscription.price * 12 | currency }}</span>
+            <span class="discount">({{ subscription.discount }}% off)</span>
+          </p>
+        </div>
+
+        <div class="plan-details">
+          <h4 class="section-header">Features and Benefits:</h4>
+          <div class="details-columns">
+            <ul class="section-list">
+              <li *ngFor="let feature of subscription.features">{{ feature }}</li>
+              <li *ngFor="let benefit of subscription.benefits">{{ benefit }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <button class="plan-select-btn">Select Plan</button>
+      </div>
+    </ng-container>
+  </div>
+</div>
